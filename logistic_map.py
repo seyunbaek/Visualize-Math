@@ -10,6 +10,7 @@ endcap = np.arange(int(N*0.9),N)
 rates = []
 uniques = []
 
+# Compute the Fixed Values for each Growth Rate (r)
 for ri in range(len(rs)):
     for n in range(N-1):
         x[n+1] = rs[ri]*x[n]*(1-x[n])
@@ -19,15 +20,17 @@ for ri in range(len(rs)):
         rates.append(rs[ri])
         uniques.append(i)
 
+# Generate CSV File
 with open('logistic_map.csv','w') as f:
     writer = csv.writer(f)
     writer.writerow(["Growth Rate","Fixed Value"])
     for i in range(len(uniques)):
         writer.writerow([rates[i],uniques[i]])
 
-# plt.style.use('dark_background')
-# plt.figure(figsize=(16, 9))
-# plt.axis('off')
-# plt.plot(rates,uniques,'.',color='white',markersize=0.03)
-# plt.savefig("Logistic Map.png",dpi=1200)
-# plt.show()
+# Plot the values
+plt.style.use('dark_background')
+plt.figure(figsize=(16, 9))
+plt.axis('off')
+plt.plot(rates,uniques,'.',color='white',markersize=0.03)
+plt.savefig("Logistic Map.png",dpi=1200) # Save the diagram as a .png file
+plt.show() # Show the diagram using matplotlib
